@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="bookmarks-container">
+
+    <div>
+      <h3>Bookmarks</h3>
+
+      <div *ngIf="!(bookmarks$ | async).length">No bookmark location has been pinned yet..</div>
+
+      <ul class="list-unstyled">
+        <li *ngFor="let bookmark of bookmarks$ | async">
+          <a [routerLink]="['../details']"
+             [queryParams]="{lat: bookmark.coord.lat, lon: bookmark.coord.lon}">
+            {{ bookmark.name }}
+          </a>
+          <button class="btn btn-outline-dark btn-sm"
+                  (click)="removeBookmark(bookmark.id)">X</button>
+        </li>
+      </ul>
+
+    </div>
+
+    <div>
+      <label>Add a location to bookmark</label>
+    </div>
+
+  </div>
+</div>
